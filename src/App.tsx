@@ -1,11 +1,11 @@
-import React, {Component, ReactNodeArray} from 'react';
-import {SortableContainer, SortEvent, SortOver, SortOverHandler} from 'react-sortable-hoc';
-import {SortableBox} from "./GameContainer";
+import React, {Component} from 'react';
+import {Box} from "./GameContainer";
 import {css} from "@emotion/core";
 import styled from "@emotion/styled";
-import {appComponentsState, stateItem} from "./types";
+import {appComponentsState} from "./types";
+import Draggable, {DraggableData, DraggableEventHandler, DraggableEvent} from 'react-draggable'
 
-const SortableContainerComponent = SortableContainer(({children}: { children: ReactNodeArray }) => <StyledUl>{children}</StyledUl>);
+// const SortableContainerComponent = SortableContainer(({children}: { children: ReactNodeArray }) => <StyledUl>{children}</StyledUl>);
 
 
 class App extends Component <{}, appComponentsState> {
@@ -18,34 +18,33 @@ class App extends Component <{}, appComponentsState> {
     }
 
 
-    onSortEnd = ({oldIndex, newIndex}: { oldIndex: number, newIndex: number }) => {
-        this.setState(({items}) => {
+    onSortEnd: DraggableEventHandler = (e: DraggableEvent, data: DraggableData) => {
+        // this.setState(({items}) => {
+        //
+        //     // const itemsWithoutItem: number[] = [...items.slice(0, oldIndex), ...items.slice(oldIndex, items.length - 1)];
+        //     const arrayCopy: stateItem[] = items.slice(0);
+        //     arrayCopy[newIndex] = items[oldIndex];
+        //     arrayCopy[oldIndex] = items[newIndex];
+        //     // console.log('itemsWithoutItem0: ', {...itemsWithoutItem});
+        //
+        //     // itemsWithoutItem[newIndex] = items[oldIndex];
+        //     console.log('itemsWithoutItem1: ', items[oldIndex], arrayCopy, items);
+        //
+        //     // return ({
+        //     //     items: arrayCopy
+        //     // })
+        // });
+        console.log('onSortEnd', e, data)
 
-            // const itemsWithoutItem: number[] = [...items.slice(0, oldIndex), ...items.slice(oldIndex, items.length - 1)];
-            const arrayCopy: stateItem[] = items.slice(0);
-            arrayCopy[newIndex] = items[oldIndex];
-            arrayCopy[oldIndex] = items[newIndex];
-            // console.log('itemsWithoutItem0: ', {...itemsWithoutItem});
 
-            // itemsWithoutItem[newIndex] = items[oldIndex];
-            console.log('itemsWithoutItem1: ', items[oldIndex], arrayCopy, items);
 
-            return ({
-                items: arrayCopy
-            })
-        });
     };
 
-    onHoverItem: SortOverHandler = ({index, oldIndex, newIndex, collection, isKeySorting}: SortOver, e: SortEvent) =>{
-        console.log(666, {index, oldIndex, newIndex, collection, isKeySorting}, e);
-        const {items} = this.state;
+    onDrag: DraggableEventHandler = (e: DraggableEvent, data: DraggableData) =>{
+        console.log('onDrag', data, e);
+        if(e.target){
 
-        const newItems = [...items];
-        newItems[newIndex].isVisible = false;
-
-        this.setState({
-            items: newItems
-        })
+        }
 
     };
 
@@ -54,20 +53,14 @@ class App extends Component <{}, appComponentsState> {
 
         return (
             <div css={wrapperDivStyle}>
-                <SortableContainerComponent
-                    onSortOver={this.onHoverItem}
-                    axis={'xy'}
-                    onSortEnd={this.onSortEnd}
-                    helperClass={'dragging-helper-class'}
-                    lockToContainerEdges
-                    hideSortableGhost={false}
-                    transitionDuration={0}
-                >
+                <StyledUl>
                     {items.map((item, index) => (
-                            <SortableBox key={`item-${item.value}`} index={index} initialItem={item}/>
-                    ))}
 
-                </SortableContainerComponent>
+                            <Box key={`item-${item.value}`} onDrag={this.onDrag} onStop={this.onSortEnd} index={index} initialItem={item}/>
+
+                    ))}
+                </StyledUl>
+
             </div>
         );
     }
@@ -85,6 +78,9 @@ const StyledUl = styled.ul`
     flex-wrap: wrap;
     list-style:none;
     padding: 0;
+    &.draggingClass{
+        z-index:1;
+    }
 `;
 
 export default App;

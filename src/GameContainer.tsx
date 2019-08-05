@@ -1,41 +1,46 @@
-import React, {useCallback, useEffect, useMemo, useRef} from 'react';
+import React, { useEffect, useMemo} from 'react';
 import styled from '@emotion/styled'
 import {SortableElement, SortableElementProps} from "react-sortable-hoc";
-import {Grid} from "@material-ui/core";
 import {stateItem} from "./types";
+import Draggable , {DraggableEventHandler}from 'react-draggable';
 
 
 type BoxOwnProps = {
     initialItem: stateItem,
-    index: number
+    index: number,
+    onDrag: DraggableEventHandler,
+    onStop: DraggableEventHandler
 }
 type sortableElementProp = SortableElementProps & BoxOwnProps
 
-const Box: React.FunctionComponent<BoxOwnProps> = ({initialItem, index}) => {
+export const Box: React.FunctionComponent<BoxOwnProps> = ({initialItem, index, onDrag, onStop}) => {
     console.log(initialItem, index);
 
 
     // const randomColor0 = useRef('#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6));
     const randomColor = useMemo(() => '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6), []);
 
-    useEffect(() => {
-        console.log('initialNumber props', initialItem)
-    }, [initialItem]);
-
-
-    useEffect(() => {
-        console.log('item props', index)
-    }, [index]);
 
     return (
-            <BoxWrapperListItem randomColor={randomColor} isVisible={initialItem.isVisible}>
+        <Draggable
+            onDrag={onDrag}
+            onStop={onStop}
+            defaultClassNameDragging={'draggingClass'}
+            defaultClassNameDragged={'draggingClass'}
+        >
+            <BoxWrapperListItem
+                randomColor={randomColor}
+                isVisible={initialItem.isVisible}
+            >
                 <span> {initialItem.value}</span>
             </BoxWrapperListItem>
+        </Draggable>
     )
 
 };
 
 export const SortableBox = SortableElement<sortableElementProp>(Box);
+
 
 
 const BoxWrapperListItem = styled.li<{ randomColor: string , isVisible: boolean }>`
@@ -44,9 +49,10 @@ const BoxWrapperListItem = styled.li<{ randomColor: string , isVisible: boolean 
     margin: 5px;
     padding: 5px;
     flex: 0 0 20%;
-    &.dragging-helper-class{
-        list-style: none;
-    }
+    // &.draggingClass{
+    //     z-index:1;
+    // }
+    
 `;
 
 // background-color: ${'#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6)};
