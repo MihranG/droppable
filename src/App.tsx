@@ -2,10 +2,8 @@ import React, {Component} from 'react';
 import {Box} from "./GameContainer";
 import {css} from "@emotion/core";
 import styled from "@emotion/styled";
-import {appComponentsState} from "./types";
-import Draggable, {DraggableData, DraggableEventHandler, DraggableEvent} from 'react-draggable'
+import {appComponentsState, DraggableEvent, DraggableEventHandler} from "./types";
 
-// const SortableContainerComponent = SortableContainer(({children}: { children: ReactNodeArray }) => <StyledUl>{children}</StyledUl>);
 
 
 class App extends Component <{}, appComponentsState> {
@@ -13,40 +11,44 @@ class App extends Component <{}, appComponentsState> {
     constructor(props: Readonly<appComponentsState>) {
         super(props);
         this.state = {
-            items: Array.apply(null, Array(16)).map((_, i) => ({value: i + 1, isVisible:true}))
+            items: Array.apply(null, Array(16)).map((_, i) => ({value: i + 1, isVisible: true})),
+            draggingID: -1
         };
     }
 
 
-    onSortEnd: DraggableEventHandler = (e: DraggableEvent, data: DraggableData) => {
-        // this.setState(({items}) => {
-        //
-        //     // const itemsWithoutItem: number[] = [...items.slice(0, oldIndex), ...items.slice(oldIndex, items.length - 1)];
-        //     const arrayCopy: stateItem[] = items.slice(0);
-        //     arrayCopy[newIndex] = items[oldIndex];
-        //     arrayCopy[oldIndex] = items[newIndex];
-        //     // console.log('itemsWithoutItem0: ', {...itemsWithoutItem});
-        //
-        //     // itemsWithoutItem[newIndex] = items[oldIndex];
-        //     console.log('itemsWithoutItem1: ', items[oldIndex], arrayCopy, items);
-        //
-        //     // return ({
-        //     //     items: arrayCopy
-        //     // })
-        // });
-        console.log('onSortEnd', e, data)
+    onDrop = (id: number): DraggableEventHandler => {
+        const {items, draggingID} = this.state;
 
+        return (e: DraggableEvent) => {
+            const newItems = [...items];
+            const buffer = newItems[id];
+            newItems[id] = newItems[draggingID];
+            newItems[draggingID] = buffer;
 
-
+            this.setState({
+                items: newItems,
+                draggingID: -1
+            })
+        }
     };
 
-    onDrag: DraggableEventHandler = (e: DraggableEvent, data: DraggableData) =>{
-        console.log('onDrag', data, e);
-        if(e.target){
+    onDragStop = (id: number): DraggableEventHandler => {
+        return (e: DraggableEvent) => {
+            this.setState({
+                draggingID: -1
+            })
 
         }
+    };
+
+    onDragStart = (id: number): DraggableEventHandler => (e: DraggableEvent) => {
+        this.setState({
+            draggingID: id
+        })
 
     };
+
 
     render() {
         const {items} = this.state;
@@ -56,7 +58,12 @@ class App extends Component <{}, appComponentsState> {
                 <StyledUl>
                     {items.map((item, index) => (
 
-                            <Box key={`item-${item.value}`} onDrag={this.onDrag} onStop={this.onSortEnd} index={index} initialItem={item}/>
+                        <Box key={`item-${item.value}`}
+                             onDragStart={this.onDragStart}
+                             onDragStop={this.onDragStop}
+                             onDrop={this.onDrop}
+                             index={index} initialItem={item}
+                        />
 
                     ))}
                 </StyledUl>
@@ -67,8 +74,7 @@ class App extends Component <{}, appComponentsState> {
 }
 
 
-
-const wrapperDivStyle=css`
+const wrapperDivStyle = css`
     #margin: 0 50px;
 `;
 
