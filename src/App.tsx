@@ -1,26 +1,26 @@
 import React, {Component} from 'react';
-import {Box} from "./GameContainer";
+import {Box} from "./Box";
 import {css} from "@emotion/core";
 import styled from "@emotion/styled";
-import {appComponentsState, DraggableEvent, DraggableEventHandler} from "./types";
+import {appComponentsState} from "./types";
+
+const RECTANGLE_SIZE_HARDCODED = 4 * 4;
 
 
+export class App extends Component <{}, appComponentsState> {
 
-class App extends Component <{}, appComponentsState> {
-
-    constructor(props: Readonly<appComponentsState>) {
+    constructor(props: Readonly<{}>) {
         super(props);
         this.state = {
-            items: Array.apply(null, Array(16)).map((_, i) => ({value: i + 1, isVisible: true})),
+            items: Array.apply(null, Array(RECTANGLE_SIZE_HARDCODED)).map((_, i) => ({value: i + 1, isVisible: true})),
             draggingID: -1
         };
     }
 
-
-    onDrop = (id: number): DraggableEventHandler => {
+    onDrop = (id: number): () => void => {
         const {items, draggingID} = this.state;
 
-        return (e: DraggableEvent) => {
+        return () => {
             const newItems = [...items];
             const buffer = newItems[id];
             newItems[id] = newItems[draggingID];
@@ -33,8 +33,8 @@ class App extends Component <{}, appComponentsState> {
         }
     };
 
-    onDragStop = (id: number): DraggableEventHandler => {
-        return (e: DraggableEvent) => {
+    onDragStop = (): () => void => {
+        return () => {
             this.setState({
                 draggingID: -1
             })
@@ -42,13 +42,12 @@ class App extends Component <{}, appComponentsState> {
         }
     };
 
-    onDragStart = (id: number): DraggableEventHandler => (e: DraggableEvent) => {
+    onDragStart = (id: number): () => void => () => {
         this.setState({
             draggingID: id
         })
 
     };
-
 
     render() {
         const {items} = this.state;

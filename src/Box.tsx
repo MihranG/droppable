@@ -22,14 +22,15 @@ type BoxWrapperListItemProps = {
 
 }
 
-export const Box: React.FunctionComponent<BoxOwnProps> = ({initialItem, index, onDragStart, onDragStop, onDrop}) => {
 
+export const Box: React.FunctionComponent<BoxOwnProps> = ({initialItem, index, onDragStart, onDragStop, onDrop}) => {
 
     const randomColor = useMemo(() => '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6), []);
 
 
     const [isDraggedOver, isDraggedOverSetter] = useState(false);
     const [isInDraggingState, isInDraggingStateSetter] = useState(false);
+
 
     return (
 
@@ -68,6 +69,7 @@ export const Box: React.FunctionComponent<BoxOwnProps> = ({initialItem, index, o
             isDraggedOver={isDraggedOver}
             isInDraggingState={isInDraggingState}
             draggable={true}
+            data-testid={`box-${initialItem.value}`}
         >
             <span> {initialItem.value}</span>
         </BoxWrapperListItem>
@@ -86,10 +88,4 @@ const BoxWrapperListItem = styled.li<BoxWrapperListItemProps>`
     margin: 5px;
     padding: 5px;
     flex: 0 0 20%;
-    // &.draggingClass{
-    //     z-index:1;
-    // }
-    
 `;
-
-// background-color: ${'#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6)};

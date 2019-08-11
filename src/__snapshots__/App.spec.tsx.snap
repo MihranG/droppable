@@ -1,0 +1,277 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App root component should match snapshots  1`] = `
+<div
+  css={
+    Object {
+      "map": undefined,
+      "name": "v0o5o4",
+      "next": undefined,
+      "styles": "
+    #margin: 0 50px;
+",
+    }
+  }
+>
+  <ul
+    className="css-qye5tu"
+  >
+    <li
+      className="css-12x2kaz"
+      data-testid="box-1"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        1
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-2"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        2
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-3"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        3
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-4"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        4
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-5"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        5
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-6"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        6
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-7"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        7
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-8"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        8
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-9"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        9
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-10"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        10
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-11"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        11
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-12"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        12
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-13"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        13
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-14"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        14
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-15"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        15
+      </span>
+    </li>
+    <li
+      className="css-12x2kaz"
+      data-testid="box-16"
+      draggable={true}
+      onDragEnd={[Function]}
+      onDragEnter={[Function]}
+      onDragLeave={[Function]}
+      onDragOver={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+    >
+      <span>
+         
+        16
+      </span>
+    </li>
+  </ul>
+</div>
+`;

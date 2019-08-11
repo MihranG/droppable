@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Box component should be rendered should match snapshots  1`] = `
+<li
+  className="css-12x2kaz"
+  data-testid="box-5"
+  draggable={true}
+  onDragEnd={[Function]}
+  onDragEnter={[Function]}
+  onDragLeave={[Function]}
+  onDragOver={[Function]}
+  onDragStart={[Function]}
+  onDrop={[Function]}
+>
+  <span>
+     
+    5
+  </span>
+</li>
+`;
